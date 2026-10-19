@@ -16,7 +16,9 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "tailwindcss": "catalog:",
-    "@clerk/nextjs": "^6.0.0"
+    "@clerk/nextjs": "^6.0.0",
+    "svix": "^1.45.0",
+    "convex": "^1.17.0"
   },
   "devDependencies": {
     "typescript": "catalog:",
