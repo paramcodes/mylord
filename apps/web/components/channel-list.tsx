@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Channel = { id: string; name: string; type: "text" | "voice"; unread?: number; mentions?: number };
 
@@ -45,9 +46,22 @@ export function ChannelList() {
           </li>
         ))}
       </ul>
-      {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="w-80 rounded bg-white p-4 shadow">
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+          >
+            <motion.div
+              className="w-80 rounded bg-white p-4 shadow"
+              initial={{ opacity: 0, scale: 0.95, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 8 }}
+              transition={{ duration: 0.15 }}
+            >
             <h2 className="mb-2 text-sm font-semibold">Create channel</h2>
             <input
               className="w-full rounded border border-magenta-200 px-2 py-1 text-sm"
@@ -67,9 +81,10 @@ export function ChannelList() {
                 Create
               </button>
             </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
