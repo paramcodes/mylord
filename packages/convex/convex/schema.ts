@@ -25,10 +25,13 @@ export default defineSchema({
     channelId: v.id("channels"),
     authorId: v.id("users"),
     body: v.string(),
+    createdAt: v.number(),
     editedAt: v.optional(v.number()),
   })
     .index("by_channel", ["channelId"])
-    .index("by_author", ["authorId"]),
+    .index("by_author", ["authorId"])
+    .index("by_created_at", ["createdAt"])
+    .index("by_channel_created_at", ["channelId", "createdAt"]),
 
   members: defineTable({
     serverId: v.id("servers"),
