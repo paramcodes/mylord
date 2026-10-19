@@ -8,4 +8,34 @@ export default defineSchema({
     name: v.optional(v.string()),
     imageUrl: v.optional(v.string()),
   }).index("by_clerk_id", ["clerkId"]),
+
+  servers: defineTable({
+    name: v.string(),
+    ownerId: v.id("users"),
+    iconUrl: v.optional(v.string()),
+  }).index("by_owner", ["ownerId"]),
+
+  channels: defineTable({
+    serverId: v.id("servers"),
+    name: v.string(),
+    type: v.union(v.literal("text"), v.literal("voice")),
+  }).index("by_server", ["serverId"]),
+
+  messages: defineTable({
+    channelId: v.id("channels"),
+    authorId: v.id("users"),
+    body: v.string(),
+    editedAt: v.optional(v.number()),
+  })
+    .index("by_channel", ["channelId"])
+    .index("by_author", ["authorId"]),
+
+  members: defineTable({
+    serverId: v.id("servers"),
+    userId: v.id("users"),
+    role: v.union(v.literal("owner"), v.literal("admin"), v.literal("member")),
+  })
+    .index("by_server", ["serverId"])
+    .index("by_user", ["userId"])
+    .index("by_server_user", ["serverId", "userId"]),
 });
