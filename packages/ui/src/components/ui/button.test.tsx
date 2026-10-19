@@ -1,0 +1,7 @@
+import { render, screen } from "@testing-library/react";
+import { Button } from "./button";
+
+test("renders button", () => {
+  render(<Button>Click</Button>);
+  expect(screen.getByText("Click")).toBeTruthy();
+});

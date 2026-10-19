@@ -19,9 +19,12 @@
   },
   "devDependencies": {
     "@mylord/config": "workspace:*",
-    "typescript": "catalog:",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
     "@types/react": "catalog:",
-    "@types/react-dom": "catalog:"
+    "@types/react-dom": "catalog:",
+    "happy-dom": "^21.0.3",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -29,6 +32,7 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "build": "tsc --noEmit"
+    "build": "tsc --noEmit",
+    "test": "bun test"
   }
 }
