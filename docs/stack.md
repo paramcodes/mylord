@@ -32,6 +32,8 @@ bun run dev          # turbo dev
 bun run build        # turbo build
 bun run typecheck    # turbo typecheck
 bun run lint         # turbo lint
-bun run format       # oxfmt . && bun run lint
+bun run format       # oxfmt . && bun run lint — fails: oxfmt is not a dependency
 bun run test         # turbo test
 ```
+
+`bun run format` and `bun run format:check` do not run: `oxfmt` is not a project dependency, so both fail with `oxfmt: command not found`. Use `bunx oxfmt` instead.
