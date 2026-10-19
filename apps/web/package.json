@@ -10,11 +10,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@tailwindcss/postcss": "catalog:",
     "next": "catalog:",
+    "next-themes": "^0.4.6",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "tailwindcss": "catalog:",
-    "@tailwindcss/postcss": "catalog:"
+    "tailwindcss": "catalog:"
   },
   "devDependencies": {
     "typescript": "catalog:",
