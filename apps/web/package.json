@@ -23,7 +23,8 @@
     "sonner": "^2.0.8",
     "svix": "^1.45.0",
     "tailwindcss": "catalog:",
-    "@mylord/ui": "workspace:*"
+    "@mylord/ui": "workspace:*",
+    "@vercel/analytics": "^1.5.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",
