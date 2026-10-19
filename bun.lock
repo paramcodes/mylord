@@ -55,6 +55,8 @@
       },
       "devDependencies": {
         "@mylord/config": "workspace:*",
+        "@types/react": "catalog:",
+        "@types/react-dom": "catalog:",
         "typescript": "catalog:",
       },
       "peerDependencies": {
