@@ -1,5 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import { RootLayout } from "@/components/root-layout";
 
 export default async function ProtectedLayout({
   children,
@@ -8,5 +9,5 @@ export default async function ProtectedLayout({
 }) {
   const { userId } = await auth();
   if (!userId) redirect("/sign-in");
-  return <>{children}</>;
+  return <RootLayout>{children}</RootLayout>;
 }
