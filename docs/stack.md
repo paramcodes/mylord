@@ -9,18 +9,20 @@
 - Tailwind CSS v4 (`@tailwindcss/postcss`).
 - shadcn/ui over Radix primitives.
 - next-themes for dark/light.
+- framer-motion for transitions, `@tanstack/react-virtual` for the message list, sonner for toasts.
 
 ## Backend
-- Convex: realtime database, queries/mutations/actions.
+- Convex: realtime database, queries and mutations. No actions are defined.
 - Clerk: auth (middleware, providers, webhooks → Convex user sync).
+- The Convex path is the production path. It has not been exercised against a live deployment in this repo.
 
 ## UI package
-- `packages/ui`: magenta design tokens, shared primitives (Button, Input, Avatar, Badge, Sidebar, Panel, ScrollArea).
+- `packages/ui`: magenta design tokens, shared primitives (Button, Input, Avatar, Badge, Sidebar, Panel, ScrollArea, Skeleton, EmptyState).
 
 ## Quality tooling
-- Ultracite: oxlint + oxfmt.
-- TypeScript via tsgo/tsc.
-- Tests: bun test (unit/component), convex-test (Convex functions), Playwright (e2e).
+- Formatting uses Ultracite's `oxfmt`; the pre-commit hook runs `oxfmt --check` and `oxlint` via `bunx`. The `lint` gate itself is ESLint (`apps/web/eslint.config.mjs`).
+- TypeScript via `tsc --noEmit`, per package.
+- Tests: bun test (unit/component) and convex-test (Convex functions). Playwright drives the e2e flows separately, against the demo-mode dev server: `cd apps/web && bun run test:e2e`.
 - Lefthook: pre-commit lint+format+typecheck; pre-push tests+build.
 
 ## Commands
@@ -30,6 +32,8 @@ bun run dev          # turbo dev
 bun run build        # turbo build
 bun run typecheck    # turbo typecheck
 bun run lint         # turbo lint
-bun run format       # oxfmt . && bun run lint
+bun run format       # oxfmt . && bun run lint — fails: oxfmt is not a dependency
 bun run test         # turbo test
 ```
+
+`bun run format` and `bun run format:check` do not run: `oxfmt` is not a project dependency, so both fail with `oxfmt: command not found`. Use `bunx oxfmt` instead.
