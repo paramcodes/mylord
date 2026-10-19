@@ -3,6 +3,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "MyLord",
@@ -22,6 +23,7 @@ export default function RootLayout({
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
             </ThemeProvider>
+            <Toaster />
           </ConvexClientProvider>
         </ClerkProvider>
       </body>
