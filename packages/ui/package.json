@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "radix-ui": "latest",
-    "tailwindcss": "^4.0.0",
+    "tailwindcss": "catalog:",
     "class-variance-authority": "latest",
     "clsx": "latest",
     "tailwind-merge": "latest",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@mylord/config": "workspace:*",
-    "typescript": "latest"
+    "typescript": "catalog:"
   },
   "peerDependencies": {
     "react": ">=18",
