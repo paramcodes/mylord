@@ -1,1 +1,1 @@
-{"extends":"@mylord/config/tsconfig.base.json","compilerOptions":{"paths":{"@/*":["./src/*"]}},"include":["src"]}
+{"extends":"@mylord/config/tsconfig.base.json","compilerOptions":{"paths":{"@/*":["./src/*"]}},"include":["src"],"exclude":["src/**/*.test.tsx","src/**/*.test.ts"]}
