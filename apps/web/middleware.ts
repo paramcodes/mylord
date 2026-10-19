@@ -10,17 +10,27 @@ const isPublicRoute = createRouteMatcher([
 
 const isAuthRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
 
-export default clerkMiddleware(async (auth, req) => {
-  const { userId } = await auth();
+const isProd = process.env.NODE_ENV === "production";
 
-  if (isAuthRoute(req) && userId) {
-    return NextResponse.redirect(new URL("/", req.url));
-  }
+export default clerkMiddleware(
+  async (auth, req) => {
+    const { userId } = await auth();
 
-  if (!isPublicRoute(req)) {
-    await auth.protect();
-  }
-});
+    if (isAuthRoute(req) && userId) {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
+
+    if (!isPublicRoute(req)) {
+      await auth.protect();
+    }
+  },
+  {
+    debug: !isProd,
+    authorizedParties: process.env.NEXT_PUBLIC_APP_URL
+      ? [process.env.NEXT_PUBLIC_APP_URL]
+      : undefined,
+  },
+);
 
 export const config = {
   matcher: [
