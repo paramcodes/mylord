@@ -1,3 +1,11 @@
+import { ChatView } from "@/components/chat-view";
+import { PresenceTracker } from "@/components/presence-tracker";
+
 export default function ProtectedHome() {
-  return <main>Protected</main>;
+  return (
+    <>
+      <PresenceTracker />
+      <ChatView />
+    </>
+  );
 }

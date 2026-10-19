@@ -1,8 +1,8 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
+import { NextResponse, type NextMiddleware } from "next/server";
+import { isDemoMode } from "@/lib/demo-mode";
 
 const isPublicRoute = createRouteMatcher([
-  "/",
   "/sign-in(.*)",
   "/sign-up(.*)",
   "/api/webhooks(.*)",
@@ -12,7 +12,9 @@ const isAuthRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
 
 const isProd = process.env.NODE_ENV === "production";
 
-export default clerkMiddleware(
+const demoMiddleware: NextMiddleware = () => NextResponse.next();
+
+const clerkAuthMiddleware = clerkMiddleware(
   async (auth, req) => {
     const { userId } = await auth();
 
@@ -31,6 +33,8 @@ export default clerkMiddleware(
       : undefined,
   },
 );
+
+export default (isDemoMode() ? demoMiddleware : clerkAuthMiddleware) satisfies NextMiddleware;
 
 export const config = {
   matcher: [
