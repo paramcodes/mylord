@@ -17,7 +17,8 @@
 ## Presence & typing
 - Member list with online / idle / offline dots; typing indicator; unread counts and mention badges in the channel list.
 - `presence-tracker.tsx` sends an "online" heartbeat every 30 seconds. `setPresence` also accepts `"away"`, but nothing sends it (issue #65).
-- Unread counts are queried for the active channel only, and no client code calls `reads:markRead`, so the counts do not reset.
+- On the Convex path, unread counts are queried for the active channel only. The demo path serves the seed's counts for every channel.
+- No client code calls `reads:markRead`, so the counts do not reset.
 
 ## Polish
 - Motion transitions (framer-motion); skeletons + empty states.
