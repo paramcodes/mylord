@@ -1,11 +1,31 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { useQuery } from "convex/react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 
 import { MessageItem, type Message } from "./message-item";
 
-export function MessageList({ messages }: { messages: Message[] }) {
+export type MessageListProps = {
+  messages?: Message[];
+  channelId?: string;
+};
+
+export function MessageList({ messages: messagesProp, channelId }: MessageListProps) {
+  const queryMessages = useQuery(
+    "queries:paginatedMessages" as any,
+    channelId ? ({ channelId, paginationOpts: { numItems: 100, cursor: null } } as any) : "skip",
+  );
+
+  const messages: Message[] =
+    messagesProp ??
+    (queryMessages?.page ?? []).map((m: any) => ({
+      id: m._id,
+      author: m.authorName ?? m.author ?? "",
+      body: m.body,
+      createdAt: m.createdAt ?? m._creationTime,
+    }));
+
   const parentRef = useRef<HTMLDivElement>(null);
   const virtualizer = useVirtualizer({
     count: messages.length,
@@ -13,6 +33,12 @@ export function MessageList({ messages }: { messages: Message[] }) {
     estimateSize: () => 64,
     overscan: 8,
   });
+
+  useEffect(() => {
+    const el = parentRef.current;
+    if (!el) return;
+    el.scrollTop = el.scrollHeight;
+  }, [messages.length]);
 
   return (
     <div ref={parentRef} className="flex-1 overflow-auto px-4 py-2">
