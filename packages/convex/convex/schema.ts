@@ -52,4 +52,12 @@ export default defineSchema({
     .index("by_user", ["userId"])
     .index("by_server", ["serverId"])
     .index("by_channel", ["channelId"]),
+
+  typing: defineTable({
+    userId: v.id("users"),
+    channelId: v.id("channels"),
+    lastTyped: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_channel", ["channelId"]),
 });
