@@ -39,6 +39,7 @@ export function MessageItem({ message, currentAuthor, onEdit, onDelete }: Messag
   return (
     <motion.div
       data-testid="message-item"
+      data-message-id={message.id}
       data-author={message.author}
       className="group flex gap-3 py-2"
       initial={{ opacity: 0, y: 8 }}

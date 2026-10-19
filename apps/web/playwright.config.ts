@@ -7,6 +7,7 @@ export default defineConfig({
     command: "bun run dev",
     url: "http://localhost:3000",
     reuseExistingServer: false,
+    timeout: 180_000,
     env: {
       DEMO_MODE: "1",
       NEXT_PUBLIC_DEMO_MODE: "1",
