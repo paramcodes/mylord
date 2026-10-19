@@ -79,3 +79,7 @@
 - [x] C11.1 Demo mode: render and drive the app without Clerk/Convex credentials (PR #58)
 - [x] C11.2 Media capture (screenshots, GIF, MP4) + README embeds (PR #62)
 - [x] C11.3 ESLint flat config for the `bun run lint` gate (added in PR #58)
+
+## Phase 12 — CI repair
+- [x] C12.1 CI green: bun 1.4.3 matches the lockfile, oxfmt/oxlint declared, formatting drift swept (PR #73)
+- [x] C12.2 lefthook format glob narrowed to match the markdown exclusion (PR #73)
