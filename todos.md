@@ -76,6 +76,6 @@
 - [x] C10.4 domain + analytics
 
 ## Phase 11 — Demo mode & media
-- [ ] C11.1 Demo mode: render and drive the app without Clerk/Convex credentials (PR pending)
-- [ ] C11.2 Media capture (screenshots, GIF, MP4) + README embeds (PR pending)
-- [ ] C11.3 ESLint config for the `bun run lint` gate (missing repo-wide, not yet filed)
+- [x] C11.1 Demo mode: render and drive the app without Clerk/Convex credentials (PR #58)
+- [x] C11.2 Media capture (screenshots, GIF, MP4) + README embeds (PR #62)
+- [x] C11.3 ESLint flat config for the `bun run lint` gate (added in PR #58)
