@@ -1,8 +1,1 @@
-{
-  "extends": "@mylord/config/tsconfig.base.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": { "@/*": ["./src/*"] }
-  },
-  "include": ["src"]
-}
+{"extends":"@mylord/config/tsconfig.base.json","compilerOptions":{"paths":{"@/*":["./src/*"]}},"include":["src"]}
