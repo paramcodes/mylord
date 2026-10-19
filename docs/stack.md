@@ -22,7 +22,7 @@
 ## Quality tooling
 - Formatting uses Ultracite's `oxfmt`; the pre-commit hook runs `oxfmt --check` and `oxlint` via `bunx`. The `lint` gate itself is ESLint (`apps/web/eslint.config.mjs`).
 - TypeScript via `tsc --noEmit`, per package.
-- Tests: bun test (unit/component) and convex-test (Convex functions). Playwright drives the e2e flows separately, against the demo-mode build: `cd apps/web && bun run test:e2e`.
+- Tests: bun test (unit/component) and convex-test (Convex functions). Playwright drives the e2e flows separately, against the demo-mode dev server: `cd apps/web && bun run test:e2e`.
 - Lefthook: pre-commit lint+format+typecheck; pre-push tests+build.
 
 ## Commands

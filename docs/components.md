@@ -37,8 +37,8 @@
 | `presence-tracker.tsx` | — | 30-second online heartbeat; renders nothing. |
 
 ## Test hooks
-- `data-testid` values above are the stable handles used by the Playwright specs in `apps/web/e2e`.
-- Additional attributes the specs rely on: `data-message-id` and `data-author` on `message-item`, `data-channel` on `channel-item` and `channel-header`, `data-server` on `server-item`, `data-status` on `member-item`.
+- `data-testid` values above are the stable handles for the Playwright specs in `apps/web/e2e`. Every value except `message-edit-cancel` is selected by a spec.
+- Additional attributes on those elements: `data-message-id` and `data-author` on `message-item`, `data-channel` on `channel-item` and `channel-header`, `data-server` on `server-item`, `data-status` on `member-item`. The specs select on `data-message-id` and `data-status` only.
 
 ## Usage
 - Apps import from `packages/ui`; extend with app-specific components in `apps/web/components`.

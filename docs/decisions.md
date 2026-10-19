@@ -30,4 +30,4 @@
 - An in-memory seed behind the same façade, enabled by `DEMO_MODE` / `NEXT_PUBLIC_DEMO_MODE`. Local development and media capture run with no Clerk or Convex credentials. Production uses Clerk + Convex.
 
 ## Testing split
-- bun test for unit/component, convex-test for functions, Playwright for e2e flows. The Playwright suite runs against the demo-mode build, so it needs no credentials and no network.
+- bun test for unit/component, convex-test for functions, Playwright for e2e flows. The Playwright suite runs against the demo-mode dev server, so it needs no credentials and no network.
