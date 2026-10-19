@@ -1,9 +1,9 @@
+import { ServerList } from "@/components/server-list";
+
 export function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-screen w-screen overflow-hidden">
-      <aside className="w-16 shrink-0 border-r border-foreground/10 bg-foreground/5">
-        Servers
-      </aside>
+      <ServerList />
       <aside className="w-60 shrink-0 border-r border-foreground/10 bg-foreground/5">
         Channels
       </aside>
