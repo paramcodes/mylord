@@ -1,0 +1,17 @@
+{
+  "name": "@mylord/convex",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "convex dev",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "convex": "^1.17.0"
+  },
+  "devDependencies": {
+    "@mylord/config": "workspace:*",
+    "typescript": "^5.6.0"
+  }
+}
