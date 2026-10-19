@@ -50,7 +50,7 @@ export function ChannelList() {
                     data-testid="channel-item"
                     data-channel={ch.name}
                     onClick={() => selectChannel(ch.id)}
-                    className={`rounded px-2 py-1 text-sm hover:bg-magenta-50 ${activeChannelId === ch.id ? "bg-magenta-100 font-semibold" : ""}`}
+                    className={`rounded px-2 py-1 text-sm hover:bg-magenta-50 dark:hover:bg-magenta-950 ${activeChannelId === ch.id ? "bg-magenta-100 font-semibold text-foreground dark:bg-magenta-900" : ""}`}
                   >
                     # {ch.name}
                     {badge && badge.count > 0 && (
@@ -72,7 +72,7 @@ export function ChannelList() {
             transition={{ duration: 0.15 }}
           >
             <motion.div
-              className="w-80 rounded bg-white p-4 shadow"
+              className="w-80 rounded bg-background p-4 shadow"
               initial={{ opacity: 0, scale: 0.95, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 8 }}
@@ -80,7 +80,7 @@ export function ChannelList() {
             >
               <h2 className="mb-2 text-sm font-semibold">Create channel</h2>
               <input
-                className="w-full rounded border border-magenta-200 px-2 py-1 text-sm"
+                className="w-full rounded border border-magenta-200 px-2 py-1 text-sm dark:border-magenta-800"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="channel name"
