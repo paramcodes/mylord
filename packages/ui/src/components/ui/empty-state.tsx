@@ -12,7 +12,12 @@ export function EmptyState({
   children?: React.ReactNode;
 }) {
   return (
-    <div className={cn("flex flex-col items-center justify-center gap-2 p-6 text-center text-sm text-foreground/60", className)}>
+    <div
+      className={cn(
+        "flex flex-col items-center justify-center gap-2 p-6 text-center text-sm text-foreground/60",
+        className,
+      )}
+    >
       <p className="font-medium text-foreground/80">{title}</p>
       {description ? <p>{description}</p> : null}
       {children}
