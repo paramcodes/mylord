@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 
-type Channel = { id: string; name: string; type: "text" | "voice" };
+type Channel = { id: string; name: string; type: "text" | "voice"; unread?: number; mentions?: number };
 
 const initial: Channel[] = [
-  { id: "1", name: "general", type: "text" },
-  { id: "2", name: "random", type: "text" },
+  { id: "1", name: "general", type: "text", unread: 3, mentions: 1 },
+  { id: "2", name: "random", type: "text", unread: 0, mentions: 0 },
 ];
 
 export function ChannelList() {
@@ -37,6 +37,11 @@ export function ChannelList() {
         {channels.map((ch) => (
           <li key={ch.id} className="rounded px-2 py-1 text-sm hover:bg-magenta-50">
             # {ch.name}
+            {(ch.unread ?? 0) > 0 && (
+              <span className="ml-2 rounded-full bg-magenta-600 px-1.5 text-xs text-white">
+                {ch.mentions ? `@${ch.mentions}` : ch.unread}
+              </span>
+            )}
           </li>
         ))}
       </ul>
