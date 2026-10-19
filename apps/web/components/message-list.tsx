@@ -3,12 +3,7 @@
 import { useRef } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 
-export type Message = {
-  id: string;
-  author: string;
-  body: string;
-  createdAt: number;
-};
+import { MessageItem, type Message } from "./message-item";
 
 export function MessageList({ messages }: { messages: Message[] }) {
   const parentRef = useRef<HTMLDivElement>(null);
@@ -44,8 +39,7 @@ export function MessageList({ messages }: { messages: Message[] }) {
               }}
               className="py-2"
             >
-              <div className="text-sm font-semibold">{m.author}</div>
-              <div className="text-sm text-foreground/80">{m.body}</div>
+              <MessageItem message={m} />
             </div>
           );
         })}
