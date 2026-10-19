@@ -3,8 +3,6 @@ import { redirect } from "next/navigation";
 import { RootLayout } from "@/components/root-layout";
 import { isDemoMode } from "@/lib/demo-mode";
 
-export const dynamic = "force-dynamic";
-
 export default async function ProtectedLayout({
   children,
 }: {

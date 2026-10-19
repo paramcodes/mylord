@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   description: "MyLord web",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: {
