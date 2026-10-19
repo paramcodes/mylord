@@ -36,9 +36,7 @@ export function MemberList({ members }: { members: Member[] }) {
               role="img"
             />
             <span className="truncate">{m.name}</span>
-            <span className="ml-auto text-xs text-foreground/40">
-              {STATUS_LABEL[m.status]}
-            </span>
+            <span className="ml-auto text-xs text-foreground/40">{STATUS_LABEL[m.status]}</span>
           </li>
         ))}
       </ul>

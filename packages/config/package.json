@@ -2,6 +2,9 @@
   "name": "@mylord/config",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
-  "files": ["tsconfig*.json", "ultracite*"]
+  "files": [
+    "tsconfig*.json",
+    "ultracite*"
+  ],
+  "type": "module"
 }

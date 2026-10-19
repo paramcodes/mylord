@@ -38,29 +38,31 @@ export function ChannelList() {
         </button>
       </div>
       <ul className="flex-1 overflow-auto px-2">
-        {loading
-          ? Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="mb-1 h-6 w-full" />)
-          : channels.length === 0
-            ? <EmptyState title="No channels" />
-            : channels.map((ch) => {
-                const badge = unread[ch.id];
-                return (
-                  <li
-                    key={ch.id}
-                    data-testid="channel-item"
-                    data-channel={ch.name}
-                    onClick={() => selectChannel(ch.id)}
-                    className={`rounded px-2 py-1 text-sm hover:bg-magenta-50 dark:hover:bg-magenta-950 ${activeChannelId === ch.id ? "bg-magenta-100 font-semibold text-foreground dark:bg-magenta-900" : ""}`}
-                  >
-                    # {ch.name}
-                    {badge && badge.count > 0 && (
-                      <span className="ml-2 rounded-full bg-magenta-600 px-1.5 text-xs text-white">
-                        {badge.mentions ? `@${badge.mentions}` : badge.count}
-                      </span>
-                    )}
-                  </li>
-                );
-              })}
+        {loading ? (
+          Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="mb-1 h-6 w-full" />)
+        ) : channels.length === 0 ? (
+          <EmptyState title="No channels" />
+        ) : (
+          channels.map((ch) => {
+            const badge = unread[ch.id];
+            return (
+              <li
+                key={ch.id}
+                data-testid="channel-item"
+                data-channel={ch.name}
+                onClick={() => selectChannel(ch.id)}
+                className={`rounded px-2 py-1 text-sm hover:bg-magenta-50 dark:hover:bg-magenta-950 ${activeChannelId === ch.id ? "bg-magenta-100 font-semibold text-foreground dark:bg-magenta-900" : ""}`}
+              >
+                # {ch.name}
+                {badge && badge.count > 0 && (
+                  <span className="ml-2 rounded-full bg-magenta-600 px-1.5 text-xs text-white">
+                    {badge.mentions ? `@${badge.mentions}` : badge.count}
+                  </span>
+                )}
+              </li>
+            );
+          })
+        )}
       </ul>
       <AnimatePresence>
         {open && (

@@ -25,23 +25,31 @@ export function ServerList() {
 
   return (
     <aside className="flex w-16 shrink-0 flex-col items-center gap-2 border-r border-foreground/10 bg-foreground/5 py-2">
-      {loading
-        ? Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-10 w-10 rounded-full" />)
-        : servers.length === 0
-          ? <EmptyState title="No servers" description="Create one to get started" className="w-16 p-1 text-xs" />
-          : servers.map((s) => (
-        <button
-          key={s.id}
-          type="button"
-          data-testid="server-item"
-          data-server={s.name}
-          title={s.name}
-          onClick={() => selectServer(s.id)}
-          className={`flex h-10 w-10 items-center justify-center rounded-full text-xs font-bold ${activeServerId === s.id ? "bg-magenta-600 text-white" : "bg-foreground/10"}`}
-        >
-          {s.name.slice(0, 2).toUpperCase()}
-        </button>
-      ))}
+      {loading ? (
+        Array.from({ length: 3 }).map((_, i) => (
+          <Skeleton key={i} className="h-10 w-10 rounded-full" />
+        ))
+      ) : servers.length === 0 ? (
+        <EmptyState
+          title="No servers"
+          description="Create one to get started"
+          className="w-16 p-1 text-xs"
+        />
+      ) : (
+        servers.map((s) => (
+          <button
+            key={s.id}
+            type="button"
+            data-testid="server-item"
+            data-server={s.name}
+            title={s.name}
+            onClick={() => selectServer(s.id)}
+            className={`flex h-10 w-10 items-center justify-center rounded-full text-xs font-bold ${activeServerId === s.id ? "bg-magenta-600 text-white" : "bg-foreground/10"}`}
+          >
+            {s.name.slice(0, 2).toUpperCase()}
+          </button>
+        ))
+      )}
       <button
         type="button"
         onClick={() => setOpen(true)}
