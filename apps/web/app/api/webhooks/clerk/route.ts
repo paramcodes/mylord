@@ -2,7 +2,12 @@ import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { ConvexHttpClient } from "convex/browser";
 
-const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+let client: ConvexHttpClient | null = null;
+
+function getConvex() {
+  client ??= new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL as string);
+  return client;
+}
 
 export async function POST(req: Request) {
   const payload = await req.text();
@@ -16,14 +21,14 @@ export async function POST(req: Request) {
 
   if (event.type === "user.created" || event.type === "user.updated") {
     const u = event.data;
-    await convex.mutation("users:syncUser" as any, {
+    await getConvex().mutation("users:syncUser" as any, {
       clerkId: u.id,
       email: u.email_addresses?.[0]?.email_address,
       name: [u.first_name, u.last_name].filter(Boolean).join(" ") || undefined,
       imageUrl: u.image_url,
     });
   } else if (event.type === "user.deleted") {
-    await convex.mutation("users:deleteUser" as any, { clerkId: event.data.id });
+    await getConvex().mutation("users:deleteUser" as any, { clerkId: event.data.id });
   }
   return new Response("ok", { status: 200 });
 }

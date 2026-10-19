@@ -1,51 +1,56 @@
 "use client";
 
-import { useRef, useState, type KeyboardEvent } from "react";
-import { useMutation } from "convex/react";
+import { useState, type KeyboardEvent } from "react";
+
+import { useAppData } from "@/lib/app-data";
 
 export type ComposerProps = {
   onSend: (body: string) => void;
-  channelId?: string;
-  userId?: string;
 };
 
-export function Composer({ onSend, channelId, userId }: ComposerProps) {
+export function Composer({ onSend }: ComposerProps) {
+  const { setTyping } = useAppData();
   const [value, setValue] = useState("");
-  const setTyping = useMutation("typing:setTyping" as any);
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const notifyTyping = () => {
-    if (!channelId || !userId) return;
-    if (timer.current) clearTimeout(timer.current);
-    timer.current = setTimeout(() => {
-      setTyping({ userId, channelId } as any).catch(() => {});
-    }, 300);
+  const submit = () => {
+    const trimmed = value.trim();
+    if (!trimmed) return;
+    onSend(trimmed);
+    setValue("");
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      const trimmed = value.trim();
-      if (trimmed) {
-        onSend(trimmed);
-        setValue("");
-      }
+      submit();
     }
   };
 
   return (
     <div className="border-t border-foreground/10 p-2">
-      <textarea
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value);
-          notifyTyping();
-        }}
-        onKeyDown={handleKeyDown}
-        placeholder="Message..."
-        rows={1}
-        className="w-full resize-none rounded border border-foreground/20 bg-background px-3 py-2 text-sm focus:outline-none"
-      />
+      <div className="flex items-end gap-2">
+        <textarea
+          data-testid="composer-input"
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value);
+            setTyping();
+          }}
+          onKeyDown={handleKeyDown}
+          placeholder="Message..."
+          rows={1}
+          className="w-full resize-none rounded border border-foreground/20 bg-background px-3 py-2 text-sm focus:outline-none"
+        />
+        <button
+          type="button"
+          data-testid="composer-send"
+          onClick={submit}
+          disabled={!value.trim()}
+          className="rounded bg-magenta-600 px-3 py-2 text-sm font-medium text-white disabled:opacity-40"
+        >
+          Send
+        </button>
+      </div>
     </div>
   );
 }

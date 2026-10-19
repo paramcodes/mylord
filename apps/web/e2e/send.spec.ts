@@ -4,6 +4,12 @@ test("send message flow", async ({ page }) => {
   await page.goto("/");
   await page.getByTestId("composer-input").fill("hello e2e");
   await page.getByTestId("composer-send").click();
-  await expect(page.getByText("hello e2e")).toBeVisible();
-  await page.screenshot({ path: "e2e/send.png" });
+  await expect(page.getByTestId("message-item").filter({ hasText: "hello e2e" })).toBeVisible();
+});
+
+test("enter key sends a message", async ({ page }) => {
+  await page.goto("/");
+  await page.getByTestId("composer-input").fill("sent with enter");
+  await page.getByTestId("composer-input").press("Enter");
+  await expect(page.getByTestId("message-item").filter({ hasText: "sent with enter" })).toBeVisible();
 });

@@ -1,36 +1,26 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useQuery } from "convex/react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 
 import { MessageItem, type Message } from "./message-item";
 import { EmptyState, Skeleton } from "@mylord/ui";
 
 export type MessageListProps = {
-  messages?: Message[];
-  channelId?: string;
+  messages: Message[];
+  loading?: boolean;
   currentAuthor?: string;
   onEdit?: (id: string, body: string) => void;
   onDelete?: (id: string) => void;
 };
 
-export function MessageList({ messages: messagesProp, channelId, currentAuthor, onEdit, onDelete }: MessageListProps) {
-  const queryMessages = useQuery(
-    "queries:paginatedMessages" as any,
-    channelId ? ({ channelId, paginationOpts: { numItems: 100, cursor: null } } as any) : "skip",
-  );
-
-  const messages: Message[] =
-    messagesProp ??
-    (queryMessages?.page ?? []).map((m: any) => ({
-      id: m._id,
-      author: m.authorName ?? m.author ?? "",
-      body: m.body,
-      createdAt: m.createdAt ?? m._creationTime,
-      editedAt: m.editedAt,
-    }));
-
+export function MessageList({
+  messages,
+  loading = false,
+  currentAuthor,
+  onEdit,
+  onDelete,
+}: MessageListProps) {
   const parentRef = useRef<HTMLDivElement>(null);
   const virtualizer = useVirtualizer({
     count: messages.length,
@@ -45,7 +35,7 @@ export function MessageList({ messages: messagesProp, channelId, currentAuthor, 
     el.scrollTop = el.scrollHeight;
   }, [messages.length]);
 
-  if (channelId && queryMessages === undefined) {
+  if (loading) {
     return (
       <div className="flex-1 space-y-2 overflow-auto px-4 py-2">
         {Array.from({ length: 5 }).map((_, i) => (
