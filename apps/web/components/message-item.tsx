@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -38,7 +39,7 @@ export function MessageItem({ message, currentAuthor, onEdit, onDelete }: Messag
   const canModify = !!currentAuthor && currentAuthor === message.author;
 
   return (
-    <div className="group flex gap-3 py-2">
+    <motion.div className="group flex gap-3 py-2" initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} transition={{duration:0.18}}>
       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-foreground/10 text-xs font-semibold">
         {initials(message.author)}
       </div>
@@ -96,6 +97,6 @@ export function MessageItem({ message, currentAuthor, onEdit, onDelete }: Messag
           </button>
         </div>
       ) : null}
-    </div>
+    </motion.div>
   );
 }
