@@ -60,4 +60,13 @@ export default defineSchema({
   })
     .index("by_user", ["userId"])
     .index("by_channel", ["channelId"]),
+
+  reads: defineTable({
+    userId: v.id("users"),
+    channelId: v.id("channels"),
+    lastReadAt: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_channel", ["channelId"])
+    .index("by_user_channel", ["userId", "channelId"]),
 });
