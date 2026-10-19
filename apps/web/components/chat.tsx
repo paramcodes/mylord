@@ -10,9 +10,11 @@ export type ChatProps = {
   initialMessages?: Message[];
   currentAuthor: string;
   onSend: (body: string) => Promise<Message>;
+  onEdit?: (id: string, body: string) => void;
+  onDelete?: (id: string) => void;
 };
 
-export function Chat({ initialMessages = [], currentAuthor, onSend }: ChatProps) {
+export function Chat({ initialMessages = [], currentAuthor, onSend, onEdit, onDelete }: ChatProps) {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [isPending, startTransition] = useTransition();
   const [optimistic, addOptimistic] = useOptimistic<Message[], string>(
@@ -38,7 +40,7 @@ export function Chat({ initialMessages = [], currentAuthor, onSend }: ChatProps)
 
   return (
     <div className="flex h-full flex-col">
-      <MessageList messages={optimistic} />
+      <MessageList messages={optimistic} currentAuthor={currentAuthor} onEdit={onEdit} onDelete={onDelete} />
       <Composer onSend={handleSend} />
       {isPending ? <span className="sr-only">sending</span> : null}
     </div>
