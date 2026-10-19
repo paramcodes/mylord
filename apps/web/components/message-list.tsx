@@ -5,6 +5,7 @@ import { useQuery } from "convex/react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 
 import { MessageItem, type Message } from "./message-item";
+import { EmptyState, Skeleton } from "@mylord/ui";
 
 export type MessageListProps = {
   messages?: Message[];
@@ -43,6 +44,20 @@ export function MessageList({ messages: messagesProp, channelId, currentAuthor, 
     if (!el) return;
     el.scrollTop = el.scrollHeight;
   }, [messages.length]);
+
+  if (channelId && queryMessages === undefined) {
+    return (
+      <div className="flex-1 space-y-2 overflow-auto px-4 py-2">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Skeleton key={i} className="h-12 w-full" />
+        ))}
+      </div>
+    );
+  }
+
+  if (messages.length === 0) {
+    return <EmptyState title="No messages yet" description="Start the conversation" className="flex-1" />;
+  }
 
   return (
     <div ref={parentRef} className="flex-1 overflow-auto px-4 py-2">

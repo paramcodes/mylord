@@ -13,6 +13,7 @@
       "version": "0.0.0",
       "dependencies": {
         "@clerk/nextjs": "^6.0.0",
+        "@mylord/ui": "workspace:*",
         "@tailwindcss/postcss": "catalog:",
         "@tanstack/react-virtual": "^3.14.21",
         "convex": "^1.17.0",

@@ -21,7 +21,8 @@
     "react-dom": "catalog:",
     "sonner": "^2.0.8",
     "svix": "^1.45.0",
-    "tailwindcss": "catalog:"
+    "tailwindcss": "catalog:",
+    "@mylord/ui": "workspace:*"
   },
   "devDependencies": {
     "typescript": "catalog:",

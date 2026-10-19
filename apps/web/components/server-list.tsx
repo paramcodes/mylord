@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { EmptyState, Skeleton } from "@mylord/ui";
 import { AnimatePresence, motion } from "framer-motion";
 
 type Server = { id: string; name: string };
 
 export function ServerList() {
   const [servers, setServers] = useState<Server[]>([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => { const t = setTimeout(()=>setLoading(false), 400); return () => clearTimeout(t); }, []);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
 
@@ -19,7 +22,11 @@ export function ServerList() {
 
   return (
     <aside className="flex w-16 shrink-0 flex-col items-center gap-2 border-r border-foreground/10 bg-foreground/5 py-2">
-      {servers.map((s) => (
+      {loading
+        ? Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-10 w-10 rounded-full" />)
+        : servers.length === 0
+          ? <EmptyState title="No servers" description="Create one to get started" className="w-16 p-1 text-xs" />
+          : servers.map((s) => (
         <div
           key={s.id}
           title={s.name}

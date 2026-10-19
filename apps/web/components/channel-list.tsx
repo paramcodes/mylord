@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { EmptyState, Skeleton } from "@mylord/ui";
 import { AnimatePresence, motion } from "framer-motion";
 
 type Channel = { id: string; name: string; type: "text" | "voice"; unread?: number; mentions?: number };
@@ -12,6 +13,8 @@ const initial: Channel[] = [
 
 export function ChannelList() {
   const [channels, setChannels] = useState<Channel[]>(initial);
+  const [loading, setLoading] = useState(true);
+  useEffect(()=>{const t=setTimeout(()=>setLoading(false),300);return()=>clearTimeout(t);},[]);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
 
@@ -35,7 +38,11 @@ export function ChannelList() {
         </button>
       </div>
       <ul className="flex-1 overflow-auto px-2">
-        {channels.map((ch) => (
+        {loading
+          ? Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="mb-1 h-6 w-full" />)
+          : channels.length === 0
+            ? <EmptyState title="No channels" />
+            : channels.map((ch) => (
           <li key={ch.id} className="rounded px-2 py-1 text-sm hover:bg-magenta-50">
             # {ch.name}
             {(ch.unread ?? 0) > 0 && (
