@@ -9,9 +9,12 @@ import { MessageItem, type Message } from "./message-item";
 export type MessageListProps = {
   messages?: Message[];
   channelId?: string;
+  currentAuthor?: string;
+  onEdit?: (id: string, body: string) => void;
+  onDelete?: (id: string) => void;
 };
 
-export function MessageList({ messages: messagesProp, channelId }: MessageListProps) {
+export function MessageList({ messages: messagesProp, channelId, currentAuthor, onEdit, onDelete }: MessageListProps) {
   const queryMessages = useQuery(
     "queries:paginatedMessages" as any,
     channelId ? ({ channelId, paginationOpts: { numItems: 100, cursor: null } } as any) : "skip",
@@ -24,6 +27,7 @@ export function MessageList({ messages: messagesProp, channelId }: MessageListPr
       author: m.authorName ?? m.author ?? "",
       body: m.body,
       createdAt: m.createdAt ?? m._creationTime,
+      editedAt: m.editedAt,
     }));
 
   const parentRef = useRef<HTMLDivElement>(null);
@@ -65,7 +69,7 @@ export function MessageList({ messages: messagesProp, channelId }: MessageListPr
               }}
               className="py-2"
             >
-              <MessageItem message={m} />
+              <MessageItem message={m} currentAuthor={currentAuthor} onEdit={onEdit} onDelete={onDelete} />
             </div>
           );
         })}
