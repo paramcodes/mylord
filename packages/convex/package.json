@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "convex dev",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "bun test"
   },
   "dependencies": {
     "convex": "^1.17.0"
   },
   "devDependencies": {
     "@mylord/config": "workspace:*",
+    "convex-test": "^0.0.62",
     "typescript": "^5.6.0"
   }
 }
