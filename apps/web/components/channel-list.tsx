@@ -16,6 +16,7 @@ export function ChannelList() {
   const [loading, setLoading] = useState(true);
   useEffect(()=>{const t=setTimeout(()=>setLoading(false),300);return()=>clearTimeout(t);},[]);
   const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState<string>("1");
   const [name, setName] = useState("");
 
   const create = () => {
@@ -43,7 +44,13 @@ export function ChannelList() {
           : channels.length === 0
             ? <EmptyState title="No channels" />
             : channels.map((ch) => (
-          <li key={ch.id} className="rounded px-2 py-1 text-sm hover:bg-magenta-50">
+          <li
+            key={ch.id}
+            data-testid="channel-item"
+            data-channel={ch.name}
+            onClick={() => setSelected(ch.id)}
+            className={`rounded px-2 py-1 text-sm hover:bg-magenta-50 ${selected === ch.id ? "bg-magenta-100 font-semibold" : ""}`}
+          >
             # {ch.name}
             {(ch.unread ?? 0) > 0 && (
               <span className="ml-2 rounded-full bg-magenta-600 px-1.5 text-xs text-white">
