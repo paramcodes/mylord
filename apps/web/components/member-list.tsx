@@ -18,7 +18,7 @@ const STATUS_LABEL: Record<Member["status"], string> = {
 
 export function MemberList({ members }: { members: Member[] }) {
   return (
-    <aside className="w-60 shrink-0 border-l border-foreground/10 bg-foreground/5 flex flex-col">
+    <aside data-testid="member-panel" className="h-full w-60 shrink-0 flex flex-col">
       <header className="px-3 py-2 text-xs font-semibold uppercase tracking-wide text-foreground/60">
         Members — {members.length}
       </header>
