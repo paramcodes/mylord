@@ -41,4 +41,15 @@ export default defineSchema({
     .index("by_server", ["serverId"])
     .index("by_user", ["userId"])
     .index("by_server_user", ["serverId", "userId"]),
+
+  presence: defineTable({
+    userId: v.id("users"),
+    serverId: v.optional(v.id("servers")),
+    channelId: v.optional(v.id("channels")),
+    status: v.union(v.literal("online"), v.literal("away")),
+    lastSeen: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_server", ["serverId"])
+    .index("by_channel", ["channelId"]),
 });
