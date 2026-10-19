@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-magenta-50: #fff0f7;
-  --color-magenta-100: #ffe0ef;
-  --color-magenta-200: #ffc1df;
-  --color-magenta-300: #ff92c9;
-  --color-magenta-400: #ff5cad;
-  --color-magenta-500: #ff2d95;
-  --color-magenta-600: #e6007a;
-  --color-magenta-700: #bf0066;
-  --color-magenta-800: #990052;
-  --color-magenta-900: #7a0042;
-  --color-magenta-950: #4d0029;
+  --color-magenta-50: hsl(332 100% 97%);
+  --color-magenta-100: hsl(331 100% 94%);
+  --color-magenta-200: hsl(331 100% 88%);
+  --color-magenta-300: hsl(330 100% 79%);
+  --color-magenta-400: hsl(330 100% 68%);
+  --color-magenta-500: hsl(330 100% 59%);
+  --color-magenta-600: hsl(328 100% 45%);
+  --color-magenta-700: hsl(328 100% 37%);
+  --color-magenta-800: hsl(328 100% 30%);
+  --color-magenta-900: hsl(328 100% 24%);
+  --color-magenta-950: hsl(328 100% 15%);
 }
