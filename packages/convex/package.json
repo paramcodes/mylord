@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "convex dev",
     "typecheck": "tsc --noEmit",
-    "test": "bun test"
+    "test": "bun test",
+    "deploy": "convex deploy",
+    "deploy:prod": "convex deploy --prod"
   },
   "dependencies": {
     "convex": "^1.17.0"
