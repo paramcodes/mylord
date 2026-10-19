@@ -42,35 +42,35 @@
 - [ ] C5.5 responsive collapse
 
 ## Phase 6 — Messaging UI
-- [ ] C6.1 virtualized message list
-- [ ] C6.2 message item
-- [ ] C6.3 composer
-- [ ] C6.4 optimistic send
-- [ ] C6.5 realtime subscription
-- [ ] C6.6 edit/delete
+- [x] C6.1 virtualized message list
+- [x] C6.2 message item
+- [x] C6.3 composer
+- [x] C6.4 optimistic send
+- [x] C6.5 realtime subscription
+- [x] C6.6 edit/delete
 
 ## Phase 7 — Presence & typing
-- [ ] C7.1 presence tracking
-- [ ] C7.2 online indicators
-- [ ] C7.3 typing indicators
-- [ ] C7.4 unread/mentions
+- [x] C7.1 presence tracking
+- [x] C7.2 online indicators
+- [x] C7.3 typing indicators
+- [x] C7.4 unread/mentions
 
 ## Phase 8 — Polish & motion
-- [ ] C8.1 motion install + message transitions
-- [ ] C8.2 modal animations
-- [ ] C8.3 sidebar transitions
-- [ ] C8.4 toasts
-- [ ] C8.5 skeletons/empty states
+- [x] C8.1 motion install + message transitions
+- [x] C8.2 modal animations
+- [x] C8.3 sidebar transitions
+- [x] C8.4 toasts
+- [x] C8.5 skeletons/empty states
 
 ## Phase 9 — Testing
-- [ ] C9.1 ui component tests
-- [ ] C9.2 convex function tests
-- [ ] C9.3 e2e auth
-- [ ] C9.4 e2e send message
-- [ ] C9.5 e2e channel nav
+- [x] C9.1 ui component tests
+- [x] C9.2 convex function tests
+- [x] C9.3 e2e auth
+- [x] C9.4 e2e send message
+- [x] C9.5 e2e channel nav
 
 ## Phase 10 — Deploy
-- [ ] C10.1 Vercel config
-- [ ] C10.2 Convex prod deploy
-- [ ] C10.3 Clerk prod
-- [ ] C10.4 domain + analytics
+- [x] C10.1 Vercel config
+- [x] C10.2 Convex prod deploy
+- [x] C10.3 Clerk prod
+- [x] C10.4 domain + analytics
