@@ -1,45 +1,45 @@
 # Queue — items move to [x] only after PR merges
 
 ## Phase 0 — Repo bootstrap
-- [ ] C0.1 Init git, root package.json, turborepo, .gitignore
-- [ ] C0.2 packages/config
-- [ ] C0.3 Lefthook config
-- [ ] C0.4 GitHub Actions CI
-- [ ] C0.5 README + AGENTS.md
+- [x] C0.1 Init git, root package.json, turborepo, .gitignore
+- [x] C0.2 packages/config
+- [x] C0.3 Lefthook config
+- [x] C0.4 GitHub Actions CI
+- [x] C0.5 README + AGENTS.md
 
 ## Phase 1 — Monorepo scaffolding
-- [ ] C1.1 apps/web skeleton
-- [ ] C1.2 packages/ui
-- [ ] C1.3 packages/convex
-- [ ] C1.4 turborepo pipeline
-- [ ] C1.5 catalog deps
+- [x] C1.1 apps/web skeleton
+- [x] C1.2 packages/ui
+- [x] C1.3 packages/convex
+- [x] C1.4 turborepo pipeline
+- [x] C1.5 catalog deps
 
 ## Phase 2 — Design system (magenta)
-- [ ] C2.1 magenta color scale
-- [ ] C2.2 theme provider
-- [ ] C2.3 base primitives
-- [ ] C2.4 layout primitives
-- [ ] C2.5 typography/spacing
+- [x] C2.1 magenta color scale
+- [x] C2.2 theme provider
+- [x] C2.3 base primitives
+- [x] C2.4 layout primitives
+- [x] C2.5 typography/spacing
 
 ## Phase 3 — Auth
-- [ ] C3.1 Clerk setup
-- [ ] C3.2 sign-in/sign-up routes
-- [ ] C3.3 user sync to Convex
-- [ ] C3.4 auth guards
+- [x] C3.1 Clerk setup
+- [x] C3.2 sign-in/sign-up routes
+- [x] C3.3 user sync to Convex
+- [x] C3.4 auth guards
 
 ## Phase 4 — Convex schema + core data
-- [ ] C4.1 schema
-- [ ] C4.2 indexes
-- [ ] C4.3 server/channel CRUD
-- [ ] C4.4 message mutations
-- [ ] C4.5 queries
+- [x] C4.1 schema
+- [x] C4.2 indexes
+- [x] C4.3 server/channel CRUD
+- [x] C4.4 message mutations
+- [x] C4.5 queries
 
 ## Phase 5 — App shell
-- [ ] C5.1 root layout
-- [ ] C5.2 server list
-- [ ] C5.3 channel list
-- [ ] C5.4 member list
-- [ ] C5.5 responsive collapse
+- [x] C5.1 root layout
+- [x] C5.2 server list
+- [x] C5.3 channel list
+- [x] C5.4 member list
+- [x] C5.5 responsive collapse
 
 ## Phase 6 — Messaging UI
 - [x] C6.1 virtualized message list
@@ -74,3 +74,8 @@
 - [x] C10.2 Convex prod deploy
 - [x] C10.3 Clerk prod
 - [x] C10.4 domain + analytics
+
+## Phase 11 — Demo mode & media
+- [ ] C11.1 Demo mode: render and drive the app without Clerk/Convex credentials (PR pending)
+- [ ] C11.2 Media capture (screenshots, GIF, MP4) + README embeds (PR pending)
+- [ ] C11.3 ESLint config for the `bun run lint` gate (missing repo-wide, not yet filed)
