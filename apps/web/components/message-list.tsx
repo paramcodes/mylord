@@ -46,7 +46,9 @@ export function MessageList({
   }
 
   if (messages.length === 0) {
-    return <EmptyState title="No messages yet" description="Start the conversation" className="flex-1" />;
+    return (
+      <EmptyState title="No messages yet" description="Start the conversation" className="flex-1" />
+    );
   }
 
   return (
@@ -74,7 +76,12 @@ export function MessageList({
               }}
               className="py-2"
             >
-              <MessageItem message={m} currentAuthor={currentAuthor} onEdit={onEdit} onDelete={onDelete} />
+              <MessageItem
+                message={m}
+                currentAuthor={currentAuthor}
+                onEdit={onEdit}
+                onDelete={onDelete}
+              />
             </div>
           );
         })}

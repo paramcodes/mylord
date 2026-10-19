@@ -11,5 +11,7 @@ test("enter key sends a message", async ({ page }) => {
   await page.goto("/");
   await page.getByTestId("composer-input").fill("sent with enter");
   await page.getByTestId("composer-input").press("Enter");
-  await expect(page.getByTestId("message-item").filter({ hasText: "sent with enter" })).toBeVisible();
+  await expect(
+    page.getByTestId("message-item").filter({ hasText: "sent with enter" }),
+  ).toBeVisible();
 });

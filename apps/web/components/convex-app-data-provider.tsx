@@ -152,15 +152,13 @@ export function ConvexAppDataProvider({ children }: { children: ReactNode }) {
       type: c.type,
       serverId: c.serverId,
     }));
-    const messages: Message[] = [...((messagesQuery?.page ?? []) as any[])]
-      .reverse()
-      .map((m) => ({
-        id: m._id,
-        author: m.authorName ?? m.author ?? "",
-        body: m.body,
-        createdAt: m.createdAt ?? m._creationTime,
-        editedAt: m.editedAt,
-      }));
+    const messages: Message[] = [...((messagesQuery?.page ?? []) as any[])].reverse().map((m) => ({
+      id: m._id,
+      author: m.authorName ?? m.author ?? "",
+      body: m.body,
+      createdAt: m.createdAt ?? m._creationTime,
+      editedAt: m.editedAt,
+    }));
     const members: Member[] = ((presenceQuery ?? []) as any[]).map((p) => ({
       id: p.userId,
       name: p.userId === convexUserId ? (user?.firstName ?? "You") : p.userId,
