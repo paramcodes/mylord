@@ -4,11 +4,14 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ServerList } from "@/components/server-list";
 import { ChannelList } from "@/components/channel-list";
+import { MemberList } from "@/components/member-list";
+import { useAppData } from "@/lib/app-data";
 
 export function RootLayout({ children }: { children: React.ReactNode }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [channelOpen, setChannelOpen] = useState(true);
   const [memberOpen, setMemberOpen] = useState(true);
+  const { members } = useAppData();
 
   return (
     <div className="flex h-screen w-screen overflow-hidden">
@@ -63,7 +66,7 @@ export function RootLayout({ children }: { children: React.ReactNode }) {
             transition={{ duration: 0.2 }}
             className="hidden shrink-0 overflow-hidden border-l border-foreground/10 bg-foreground/5 lg:block"
           >
-            <div className="w-60 p-3 text-sm">Members</div>
+            <MemberList members={members} />
           </motion.aside>
         )}
       </AnimatePresence>

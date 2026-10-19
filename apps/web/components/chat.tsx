@@ -1,48 +1,37 @@
 "use client";
 
-import { useOptimistic, useState, useTransition } from "react";
-
 import { Composer } from "./composer";
-import { MessageItem, type Message } from "./message-item";
+import type { Message } from "./message-item";
 import { MessageList } from "./message-list";
+import { TypingIndicators } from "./typing-indicators";
 
 export type ChatProps = {
-  initialMessages?: Message[];
+  messages: Message[];
   currentAuthor: string;
-  onSend: (body: string) => Promise<Message>;
+  typingNames: string[];
+  onSend: (body: string) => void;
   onEdit?: (id: string, body: string) => void;
   onDelete?: (id: string) => void;
 };
 
-export function Chat({ initialMessages = [], currentAuthor, onSend, onEdit, onDelete }: ChatProps) {
-  const [messages, setMessages] = useState<Message[]>(initialMessages);
-  const [isPending, startTransition] = useTransition();
-  const [optimistic, addOptimistic] = useOptimistic<Message[], string>(
-    messages,
-    (state, body) => [
-      ...state,
-      {
-        id: `optimistic-${Date.now()}`,
-        author: currentAuthor,
-        body,
-        createdAt: Date.now(),
-      },
-    ],
-  );
-
-  const handleSend = (body: string) => {
-    startTransition(async () => {
-      addOptimistic(body);
-      const confirmed = await onSend(body);
-      setMessages((prev) => [...prev, confirmed]);
-    });
-  };
-
+export function Chat({
+  messages,
+  currentAuthor,
+  typingNames,
+  onSend,
+  onEdit,
+  onDelete,
+}: ChatProps) {
   return (
-    <div className="flex h-full flex-col">
-      <MessageList messages={optimistic} currentAuthor={currentAuthor} onEdit={onEdit} onDelete={onDelete} />
-      <Composer onSend={handleSend} />
-      {isPending ? <span className="sr-only">sending</span> : null}
+    <div className="flex min-h-0 flex-1 flex-col">
+      <MessageList
+        messages={messages}
+        currentAuthor={currentAuthor}
+        onEdit={onEdit}
+        onDelete={onDelete}
+      />
+      <TypingIndicators names={typingNames} />
+      <Composer onSend={onSend} />
     </div>
   );
 }

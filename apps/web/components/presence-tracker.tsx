@@ -1,32 +1,19 @@
 "use client";
 
 import { useEffect } from "react";
-import { useMutation } from "convex/react";
 
-export function PresenceTracker({
-  userId,
-  serverId,
-}: {
-  userId: string;
-  serverId?: string;
-}) {
-  const setPresence = useMutation("presence:setPresence" as any);
+import { useAppData } from "@/lib/app-data";
+
+export function PresenceTracker() {
+  const { currentUser, setPresence } = useAppData();
+
   useEffect(() => {
-    if (!userId) return;
-    const beat = () =>
-      setPresence({ userId, serverId, status: "online" } as any).catch(() => {});
+    if (!currentUser.id) return;
+    const beat = () => setPresence("online");
     beat();
     const id = setInterval(beat, 30000);
-    const onVis = () => {
-      if (document.visibilityState === "hidden")
-        setPresence({ userId, serverId, status: "away" } as any).catch(() => {});
-      else beat();
-    };
-    document.addEventListener("visibilitychange", onVis);
-    return () => {
-      clearInterval(id);
-      document.removeEventListener("visibilitychange", onVis);
-    };
-  }, [userId, serverId, setPresence]);
+    return () => clearInterval(id);
+  }, [currentUser.id, setPresence]);
+
   return null;
 }
