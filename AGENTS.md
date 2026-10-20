@@ -39,8 +39,18 @@ outside the markers are never touched.
 
 ### Parallelism
 
-- Keep at least three subagents in flight. Refill the queue the moment one finishes.
+- Keep at least three subagents in flight. Refill the queue the moment one finishes. Treat that as
+  a floor, not a target: back off when the provider returns rate-limit errors.
+- Split the fleet by cost. Read, plan, review, and research agents run on the provider and use no
+  local CPU. Gate-running agents — install, typecheck, test, lint, build — use local CPU, memory,
+  and disk.
+- Cap concurrent gate-running agents at 2. Agents over the cap keep working
+  on non-gate work while they wait.
+- Never start a gate run while the one-minute load average is above twice the physical core count,
+  or available memory is under 1 GiB. Queue the run instead.
 - Never run two subagents that edit the same file or package at the same time.
+- Before dispatching a batch, list the files each item will touch and intersect the lists. Two items
+  that overlap anywhere are dependent; run them in sequence.
 - Independent items — different packages or files — run concurrently. A dependent item waits for
   its parent to merge.
 - The queue lives in `todos.md`. An item moves to `[x]` only after its PR merges.
@@ -65,6 +75,12 @@ outside the markers are never touched.
 - Every change carries tests, or the PR states why it cannot.
 - A visual change needs a screenshot or GIF. A performance change needs measured numbers.
 - Evidence is attached to the PR as a comment before merge.
+
+### Escalation
+
+- Ask the operator instead of guessing when the queue has no unblocked items, two items conflict on
+  files and neither can be re-scoped, a gate has no command and the change cannot be verified, the
+  host cannot keep up with the gate queue, or a PR fails review twice for the same reason.
 
 ### Delegation
 
